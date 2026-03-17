@@ -1,4 +1,4 @@
-# 📅 Day 5 – Web Basics
+# 📅 Day 6 – Web Basics
 
 **Phase:** 1 – Computer Science & Web Foundations
 
