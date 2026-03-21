@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySaaS - Pricing</title>
+    <link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+    <!-- 
+    my job : to add sticky, flexbox and space between
+    -->
+
+    <header>
+        <nav class="nav">
+            <a href="/" class="nav-logo">My-SaaS</a>
+
+            <ul class="nav-links">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Docs</a></li>
+            </ul>
+
+            <a href="#" class="btn btn-primary">Sign up</a>
+        </nav>
+    </header>
+
+    <!-- my job : centered text, flexbox buttons -->
+    <section class="hero">
+        <div class="container">
+            <h1>simple pricing</h1>
+            <p class="plan-1">One plan for every stage of your journey</p>
+            <p class="start-free">Start free, upgrade when you need to. No hidden fees,no surprise bills. Cancel any time.</p>
+        </div>
+        <div class="hero-actions">
+            <a href="#pricing">Get started free</a>
+            <a href="#" class="btn btn-secondary">See a demo</a>
+        </div>
+    </section>
+
+    <!-- pricing cards - my job is create 3 equal cards side by side 
+        middle card is featured / highlighted
+    -->
+        <section class="pricing" id="pricing">
+            <div class="container">
+
+                <!-- free card  -->
+                <div class="pricing-card">
+                <div class="card-header">
+                    <span class="plan-name">Free</span>
+                    <div class="plan-price">
+                        <span class="price-amount">£0</span>
+                        <span class="price-period">free forever</span>
+                    </div>
+                </div>
+                    
+        <ul class="feature-list">
+            <li>✓ 5gb storage</li>
+            <li>✓ 1 user</li>
+            <li>✓ Basic file sharing</li>
+            <li>✗ Priority support</li>
+            <li class="disabled">✗ Custom domain</li>
+        </ul>
+ 
+        <a href="#" class="btn btn-secondary btn-full">Get started free</a>
+                </div>
+
+            <!-- pro card -->
+            
+        <div class="pricing-card featured">
+
+        <span class="featured-badge">Most popular</span>
+
+        <div class="card-header">
+            <span class="plan-name">Pro</span>
+            <div class="plan-price">
+            <span class="price-amount">£12</span>
+            <span class="price-period">per month</span>
+        </div>
+        
+        </div>
+
+        <ul class="feature-list">
+            <li>✓ 100 GB storage</li>
+            <li>✓ 5 users</li>
+            <li>✓ Advanced file sharing</li>
+            <li>✓ Priority support</li>
+            <li>✗ Custom domain</li>
+        </ul>
+
+            <a href="#" class="btn btn-primary btn-full">Start free trial</a>
+
+        </div>
+
+        <!-- custom card -->
+        <div class="pricing-card">
+
+                <div class="card-header">
+                <span class="plan-name">Enterprise</span>
+                <div class="plan-price">
+                    <span class="price-amount">Custom</span>
+                    <span class="price-amount">talk to us</span>
+                </div>
+            
+                </div>
+    
+                <ul class="feature-list">
+                    <li>✓ Unlimited storage</li>
+                <li>✓ Unlimited users</li>
+                <li>✓ Advanced file sharing</li>
+                <li>✓ Priority support</li>
+                <li>✓ Custom domain</li>
+                </ul>
+    
+                <a href="#" class="btn btn-secondary btn-full">Contact sales</a>
+    
+            </div>   
+
+        </div>
+        </section>
+
+        <!-- footer my job : dark bg, flex, centered links -->
+        <footer>
+            <div class="container">
+                <div class="footer-top">
+                    <span class="footer-brand">MySaaS</span>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <p class="footer-copy">&copy; 2026 MySaaS. Built with HTML &amp; CSS.</p>
+            </div>
+        
+        </footer>
+</html>
