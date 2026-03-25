@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 11 — Card Component Challenge</title>
+  <link rel="stylesheet" href="card.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <h1>Card Challenge</h1>
+    <p class="intro">
+      Style these 3 cards using ONLY selectors — combinators and pseudo-classes.
+      You cannot add any new classes or IDs to this HTML.
+      The CSS selectors you need: .card > span, .card > h3, .card li, .card li:last-child, .card li::before, .card > a, .card > a:hover, .card.featured
+    </p>
+
+    <div class="cards-row">
+
+      <!-- Card 1: Free -->
+      <article class="card">
+        <span>Free</span>
+        <h3>£0</h3>
+        <p>free forever</p>
+        <ul>
+          <li>5gb storage</li>
+          <li>1 user</li>
+          <li>Basic file sharing</li>
+        </ul>
+        <a href="#">Get started</a>
+      </article>
+
+      <!-- Card 2: Pro — featured -->
+      <article class="card featured">
+        <span>Most popular</span>
+        <span>Pro</span>
+        <h3>£12</h3>
+        <p>per month</p>
+        <ul>
+          <li>100 GB storage</li>
+          <li>5 users</li>
+          <li>Advanced file sharing</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#">Start free trial</a>
+      </article>
+
+      <!-- Card 3: Enterprise -->
+      <article class="card">
+        <span>Enterprise</span>
+        <h3>Custom</h3>
+        <p>talk to us</p>
+        <ul>
+          <li>Unlimited storage</li>
+          <li>Unlimited users</li>
+          <li>Advanced file sharing</li>
+          <li>Priority support</li>
+          <li>Custom domain</li>
+        </ul>
+        <a href="#">Contact sales</a>
+      </article>
+
+    </div>
+  </div>
+
+</body>
+</html>

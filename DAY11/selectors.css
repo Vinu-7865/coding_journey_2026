@@ -1,0 +1,359 @@
+/* ════════════════════════════════════════════════
+   DAY 11 — CSS Selectors Practice
+   Fill in every ← WRITE THIS block.
+   ════════════════════════════════════════════════ */
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ── already done ── */
+body {
+  font-family: system-ui, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+  padding: 40px 24px 80px;
+}
+
+.wrap { max-width: 860px; margin: 0 auto; }
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.intro {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-bottom: 40px;
+}
+
+.demo-block {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.demo-block h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #3b82f6;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+
+/* ╔══════════════════════════════════════════════╗
+   ║   YOUR PRACTICE — fill in each block        ║
+   ╚══════════════════════════════════════════════╝ */
+
+
+/* ────────────────────────────────────────────────
+   SECTION 1 — Basic Selectors
+   ─────────────────────────────────────────────── */
+
+/* Element selector — all paragraphs */
+p {
+  /* ← WRITE THIS */
+  /* font-size, color, margin-bottom */
+}
+
+/* Class selector — only .highlight paragraphs */
+.highlight {
+  /* ← WRITE THIS */
+  /* different color e.g. #3b82f6, font-weight bold */
+}
+
+/* Span is inline by default — make .block-span display as block */
+.block-span {
+  /* ← WRITE THIS */
+  /* display: block */
+  /* background, padding, margin-top, border-radius */
+}
+
+
+/* ────────────────────────────────────────────────
+   SECTION 2 — Combinators
+   ─────────────────────────────────────────────── */
+
+/* Direct child — ONLY direct p children of .parent */
+.parent > p {
+  /* ← WRITE THIS */
+  /* e.g. color: #3b82f6, font-weight: 600 */
+}
+
+/* Descendant — ANY p inside .parent including nested */
+.parent p {
+  /* ← WRITE THIS */
+  /* e.g. background: #f8fafc, padding: 8px, border-radius: 6px */
+}
+
+/* Adjacent sibling — p IMMEDIATELY after h3 */
+h3 + p {
+  /* ← WRITE THIS */
+  /* e.g. color: #3b82f6, font-weight: 600 */
+}
+
+/* General sibling — ALL p elements after h3 */
+h3 ~ p {
+  /* ← WRITE THIS */
+  /* e.g. padding-left: 12px, border-left: 3px solid #e2e8f0 */
+}
+
+
+/* ────────────────────────────────────────────────
+   SECTION 3 — Pseudo-classes
+   ─────────────────────────────────────────────── */
+
+.styled-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.styled-list li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.88rem;
+}
+
+/* First item bold */
+.styled-list li:first-child {
+  /* ← WRITE THIS */
+  /* font-weight: 700 */
+}
+
+/* Second item blue background */
+.styled-list li:nth-child(2) {
+  /* ← WRITE THIS */
+  /* background: #eff6ff, color: #3b82f6 */
+}
+
+/* Odd items light grey */
+.styled-list li:nth-child(odd) {
+  /* ← WRITE THIS */
+  /* background: #f8fafc */
+}
+
+/* Last item muted and italic */
+.styled-list li:last-child {
+  /* ← WRITE THIS */
+  /* color: #94a3b8, font-style: italic, border-bottom: none */
+}
+
+/* Button group */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+/* Hover state */
+.btn:hover {
+  /* ← WRITE THIS */
+  /* background: #3b82f6, color: #fff, border-color: #3b82f6 */
+}
+
+/* Active — when clicked */
+.btn:active {
+  /* ← WRITE THIS */
+  /* transform: scale(0.97) */
+}
+
+/* Disabled state */
+.btn:disabled {
+  /* ← WRITE THIS */
+  /* opacity: 0.4, cursor: not-allowed */
+}
+
+/* Card group */
+.card-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.item-card {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  background: #fff;
+  transition: opacity 0.15s;
+}
+
+/* Non-featured cards lower opacity */
+.item-card:not(.featured) {
+  /* ← WRITE THIS */
+  /* opacity: 0.6 */
+}
+
+/* Featured card highlighted */
+.item-card.featured {
+  /* ← WRITE THIS */
+  /* border: 2px solid #3b82f6 */
+  /* background: #eff6ff */
+  /* color: #1d4ed8 */
+  /* font-weight: 600 */
+}
+
+
+/* ────────────────────────────────────────────────
+   SECTION 4 — Pseudo-elements
+   ─────────────────────────────────────────────── */
+
+/* Blue decorative line under heading using ::after */
+.underlined-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  /* ← no need to write here — put it in ::after below */
+}
+
+.underlined-heading::after {
+  /* ← WRITE THIS */
+  /* content: "" */
+  /* display: block */
+  /* width: 48px */
+  /* height: 3px */
+  /* background: #3b82f6 */
+  /* margin-top: 8px */
+}
+
+/* Check list — add ✓ before each item using ::before */
+.check-list {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.check-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+.check-list li:last-child { border-bottom: none; }
+
+.check-list li::before {
+  /* ← WRITE THIS */
+  /* content: "✓ " */
+  /* color: #3b82f6 */
+  /* font-weight: 700 */
+}
+
+/* Opening quote mark before .quote using ::before */
+.quote {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-style: italic;
+  padding-left: 20px;
+  position: relative;
+}
+
+.quote::before {
+  /* ← WRITE THIS */
+  /* content: """ */
+  /* color: #3b82f6 */
+  /* font-size: 1.5rem */
+  /* position: absolute */
+  /* left: 0 */
+  /* top: -4px */
+}
+
+
+/* ────────────────────────────────────────────────
+   SECTION 5 — Attribute Selectors
+   ─────────────────────────────────────────────── */
+
+.attr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.attr-form input {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+/* Email input — blue border */
+input[type="email"] {
+  /* ← WRITE THIS */
+  /* border: 2px solid #3b82f6 */
+}
+
+/* Password input — red border */
+input[type="password"] {
+  /* ← WRITE THIS */
+  /* border: 2px solid #ef4444 */
+}
+
+/* Submit button — different look */
+input[type="submit"] {
+  /* ← WRITE THIS */
+  /* background: #3b82f6, color: #fff, border: none, cursor: pointer */
+}
+
+/* Link list */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-list a {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  display: block;
+  transition: background 0.15s;
+}
+
+.link-list a:hover { background: #f8fafc; }
+
+/* HTTPS links — add lock icon before using ::before */
+a[href^="https"]::before {
+  /* ← WRITE THIS */
+  /* content: "🔒 " */
+}
+
+/* HTTP links (not https) — add warning */
+a[href^="http:"]:not([href^="https"])::before {
+  /* ← WRITE THIS */
+  /* content: "⚠️ " */
+}
+
+/* PDF links — add label after */
+a[href$=".pdf"]::after {
+  /* ← WRITE THIS */
+  /* content: " [PDF]" */
+  /* font-size: 0.75rem */
+  /* color: #ef4444 */
+  /* font-weight: 600 */
+}

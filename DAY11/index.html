@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 11 — Selectors Practice</title>
+  <link rel="stylesheet" href="selectors.css">
+</head>
+<body>
+
+  <div class="wrap">
+    <h1>CSS Selectors Practice</h1>
+    <p class="intro">Each section below tests a different selector type. Write the CSS in selectors.css to make each one work.</p>
+
+    <!-- ── SECTION 1: Basic selectors ── -->
+    <section class="demo-block">
+      <h2>1 — Basic Selectors</h2>
+      <p>This is a normal paragraph — styled by element selector.</p>
+      <p class="highlight">This paragraph has class="highlight" — style it differently.</p>
+      <p>Back to normal paragraph styling.</p>
+      <span>I am a span — inline by default.</span>
+      <span class="block-span">I have class="block-span" — make me display as block.</span>
+    </section>
+
+    <!-- ── SECTION 2: Combinators ── -->
+    <section class="demo-block">
+      <h2>2 — Combinators</h2>
+
+      <div class="parent">
+        <p>I am a direct child p of .parent — use .parent > p</p>
+        <div>
+          <p>I am a nested p inside .parent — use .parent p (descendant)</p>
+        </div>
+      </div>
+
+      <h3>Adjacent sibling</h3>
+      <p>I come right after the h3 — use h3 + p to style me.</p>
+      <p>I am the second p after h3 — use h3 ~ p to style me too.</p>
+      <p>I am the third p — h3 ~ p targets all of us.</p>
+    </section>
+
+    <!-- ── SECTION 3: Pseudo-classes ── -->
+    <section class="demo-block">
+      <h2>3 — Pseudo-classes</h2>
+
+      <ul class="styled-list">
+        <li>Item 1 — first-child should be bold</li>
+        <li>Item 2 — nth-child(2) should have blue background</li>
+        <li>Item 3 — nth-child(odd) items get light grey background</li>
+        <li>Item 4 — nth-child(odd) items get light grey background</li>
+        <li>Item 5 — last-child should be muted and italic</li>
+      </ul>
+
+      <div class="btn-group">
+        <button class="btn">Hover me — :hover</button>
+        <button class="btn">Active — :active when clicked</button>
+        <button class="btn" disabled>Disabled — :disabled</button>
+      </div>
+
+      <div class="card-group">
+        <div class="item-card">Card 1</div>
+        <div class="item-card featured">Card 2 — .featured</div>
+        <div class="item-card">Card 3 — :not(.featured) should have lower opacity</div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: Pseudo-elements ── -->
+    <section class="demo-block">
+      <h2>4 — Pseudo-elements</h2>
+
+      <h3 class="underlined-heading">This heading should have a blue line underneath using ::after</h3>
+
+      <ul class="check-list">
+        <li>100 GB storage</li>
+        <li>5 users</li>
+        <li>Priority support</li>
+        <li>Custom domain</li>
+      </ul>
+
+      <p class="quote">Use ::before to add an opening quote mark before this text.</p>
+    </section>
+
+    <!-- ── SECTION 5: Attribute selectors ── -->
+    <section class="demo-block">
+      <h2>5 — Attribute Selectors</h2>
+
+      <form class="attr-form">
+        <input type="text"     placeholder="type=text — grey border">
+        <input type="email"    placeholder="type=email — blue border">
+        <input type="password" placeholder="type=password — red border">
+        <input type="submit"   value="Submit — different background">
+      </form>
+
+      <div class="link-list">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub — href starts with https, show lock icon ::before</a>
+        <a href="document.pdf">Download PDF — href ends with .pdf, show PDF label ::after</a>
+        <a href="http://example.com">HTTP link — href starts with http (not https)</a>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
