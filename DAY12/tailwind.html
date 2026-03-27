@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 12 — Tailwind Practice</title>
+  <!-- Tailwind CDN — no build step needed for practice -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!--
+    ══════════════════════════════════════════════
+    HOW THIS FILE WORKS:
+    Every element already has the right structure.
+    Your job: fill in the class="" attributes.
+    Each section has comments telling you exactly
+    which Tailwind classes to use.
+    ══════════════════════════════════════════════
+  -->
+
+
+  <!-- ══════════════════════════════════════════
+       NAV
+       Classes needed:
+       nav wrapper   → sticky top-0 z-50 bg-white border-b border-gray-200
+       inner         → max-w-5xl mx-auto flex items-center justify-between px-6 py-4
+       logo          → text-xl font-bold text-gray-900
+       links wrapper → flex items-center gap-8
+       each link     → text-sm text-gray-600 hover:text-gray-900 transition-colors
+       cta button    → bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors
+       ══════════════════════════════════════════ -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <nav class="max-w-5xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="/" class="text-x1 font-bold text-gray-900 ">MySaaS</a>
+      <div class="flex items-center gap-8 ">
+        <a href="#features" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Features</a>
+        <a href="#pricing" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Docs</a>
+        <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition-colors bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">Sign up free</a>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO
+       Classes needed:
+       section       → bg-gray-50 py-20
+       inner         → max-w-5xl mx-auto px-6 text-center
+       eyebrow       → text-sm font-semibold text-blue-500 uppercase tracking-widest mb-3
+       h1            → text-5xl font-black text-gray-900 mb-4 leading-tight max-w-2xl mx-auto
+       subtext       → text-xl text-gray-600 mb-8 max-w-lg mx-auto leading-relaxed
+       buttons wrap  → flex gap-4 justify-center
+       btn primary   → bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors
+       btn secondary → bg-white hover:bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold border border-gray-200 transition-colors
+       ══════════════════════════════════════════ -->
+  <section class="bg-gray-50 py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <span class="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-3">File storage SaaS</span>
+      <h1 class="text-5x1 font-black text-gray-900 mb-4  leading-tight max-w-2xl mx-auto">
+        Store, share and manage<br>your files from anywhere
+      </h1>
+      <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto leading-relaxed">
+        Secure cloud storage with real-time collaboration.
+        Upload, organise and share files with your team in seconds.
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Get started free</a>
+        <a href="#" class="bg-white hover:bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold border border-gray-200 transition-colors">See demo</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       STATS ROW
+       Classes needed:
+       section       → bg-white border-y border-gray-200 py-10
+       inner         → max-w-5xl mx-auto px-6 grid grid-cols-3 gap-6
+       each stat     → text-center
+       number        → text-3xl font-black text-gray-900 block
+       label         → text-sm text-gray-500 mt-1
+       ══════════════════════════════════════════ -->
+  <section class="bg-white border-y border-gray-200 py-10">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-3 gap-6 ">
+
+      <div class="text-center">
+        <span class="text-3x1 font-black text-gray-900 block ">10k+</span>
+        <span class="text-sm text-gray-500 mt-1 ">active users</span>
+      </div>
+
+      <div class="text-center">
+        <span class="text-3x1 font-black text-gray-900 block ">99.9%</span>
+        <span class="text-sm text-gray-500 mt-1">uptime</span>
+      </div>
+
+      <div class="text-center">
+        <span class="text-3x1 font-black text-gray-900 block ">256-bit</span>
+        <span class="text-sm text-gray-500 mt-1">AES encryption</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FEATURES GRID
+       Classes needed:
+       section       → py-20
+       inner         → max-w-5xl mx-auto px-6
+       heading wrap  → text-center mb-12
+       eyebrow       → text-sm font-semibold text-blue-500 uppercase tracking-widest mb-2
+       h2            → text-3xl font-black text-gray-900
+       grid          → grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
+       each card     → bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200
+       icon          → text-3xl mb-4
+       card title    → font-bold text-gray-900 mb-2
+       card text     → text-gray-600 text-sm leading-relaxed
+       ══════════════════════════════════════════ -->
+  <section class="py-20" id="features">
+    <div class="max-w-5x1 mx-auto px-6 ">
+
+      <div class="text-center mb-12 ">
+        <span class="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-2 ">Why MySaaS</span>
+        <h2 class="text-3xl mb-4 ">Everything your team needs</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">⚡</div>
+          <h3 class="font-bold text-gray-900 mb-2">Fast uploads</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">Optimised pipeline. Files stored in under a second.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">🔒</div>
+          <h3 class="font-bold text-gray-900 mb-2">Secure by default</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">AES-256 encryption at rest and in transit.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">🌍</div>
+          <h3 class="font-bold text-gray-900 mb-2">Global CDN</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">200+ edge locations. Fast delivery worldwide.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">👥</div>
+          <h3 class="font-bold text-gray-900 mb-2">Team sharing</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">Share folders with your team in one click.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">📱</div>
+          <h3 class="font-bold text-gray-900 mb-2">Any device</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">Works on desktop, tablet, and mobile.</p>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+          <div class="text-3x1 mb-4">🔗</div>
+          <h3 class="font-bold text-gray-900 mb-2">Shareable links</h3>
+          <p class="text-gray-600 text-sm leading-relaxed ">Generate public or private links instantly.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       PRICING
+       Classes needed:
+       section       → bg-gray-50 py-20
+       inner         → max-w-5xl mx-auto px-6
+       heading wrap  → text-center mb-12
+       grid          → grid grid-cols-1 md:grid-cols-3 gap-6
+       base card     → bg-white rounded-xl border border-gray-200 p-6 flex flex-col
+       featured card → bg-white rounded-xl border-2 border-blue-500 p-6 flex flex-col relative
+       badge         → absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap
+       plan name     → text-xs font-bold uppercase tracking-widest text-blue-500 mb-2
+       price         → text-4xl font-black text-gray-900 mb-1
+       period        → text-sm text-gray-400 mb-4
+       feature list  → border-t border-gray-100 pt-4 mb-6 flex-1 space-y-2
+       feature item  → text-sm text-gray-600
+       btn primary   → block text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors mt-auto
+       btn outline   → block text-center border border-gray-200 hover:bg-gray-50 text-gray-700 py-2 rounded-lg font-semibold transition-colors mt-auto
+       ══════════════════════════════════════════ -->
+  <section class="bg-gray-50 py-20" id="pricing">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <div class="text-center mb-12">
+        <span class="">Simple pricing</span>
+        <h2 class="">One plan for every stage</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Free -->
+        <div class=" bg-white rounded-xl border border-gray-200 p-6 flex flex-col">
+          <div class="text-xs  font-bold uppercase tracking-widest text-blue-500 mb-2">Free</div>
+          <div class="text-4xl font-black text-gray-900 mb-1">£0</div>
+          <div class="text-sm text-gray-400 mb-4">free forever</div>
+          <ul class="border-t border-gray-100 pt-4 mb-6 flex-1 space-y-2  text-sm text-gray-600">
+            <li class="">5 GB storage</li>
+            <li class="">1 user</li>
+            <li class="">Basic file sharing</li>
+          </ul>
+          <a href="#" class="block text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg  font-semibold transition-colors mt-auto border border-gray-200">Get started</a>
+        </div>
+
+        <!-- Pro — featured -->
+        <div class="bg-white  rounded-xl border-2 border-blue-500 p-6 flex flex-col relative ">
+          <span class="text-xs  font-bold uppercase tracking-widest text-blue-500 mb-2">Most popular</span>
+          <div class="text-4xl font-black text-gray-900 mb-1">Pro</div>
+          <div class="">£12</div>
+          <div class="text-sm text-gray-400 mb-4">per month</div>
+          <ul class="border-t border-gray-100 pt-4 mb-6 flex-1 space-y-2 text-sm text-gray-600">
+            <li class="">100 GB storage</li>
+            <li class="">5 users</li>
+            <li class="">Advanced file sharing</li>
+            <li class="">Priority support</li>
+          </ul>
+          <a href="#" class="block text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg  font-semibold transition-colors mt-auto border border-gray-200">Start free trial</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-white rounded-xl border border-gray-200 p-6 flex flex-col">
+          <div class="text-xs  font-bold uppercase tracking-widest text-blue-500 mb-2">Enterprise</div>
+          <div class="text-4xl font-black text-gray-900 mb-1">Custom</div>
+          <div class="text-sm text-gray-400 mb-4">talk to us</div>
+          <ul class="border-t border-gray-100 pt-4 mb-6 flex-1 space-y-2 text-sm text-gray-600">
+            <li class="">Unlimited storage</li>
+            <li class="">Unlimited users</li>
+            <li class="">Advanced file sharing</li>
+            <li class="">Priority support</li>
+            <li class="">Custom domain</li>
+          </ul>
+          <a href="#" class="block text-center bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg  font-semibold transition-colors mt-auto border border-gray-200">Contact sales</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+       Classes needed:
+       footer        → bg-gray-900 text-gray-400 py-10
+       inner         → max-w-5xl mx-auto px-6
+       top row       → flex items-center justify-between mb-6
+       brand name    → text-white font-bold text-lg
+       tagline       → text-gray-500 text-sm mt-1
+       links wrap    → flex gap-6
+       each link     → text-sm hover:text-white transition-colors
+       divider       → border-t border-gray-800 pt-6 text-center text-sm
+       ══════════════════════════════════════════ -->
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <div class="text-white font-bold text-lg">MySaaS</div>
+          <div class="text-gray-600 text-sm mt-1 ">Building in public · Day 12 of 170</div>
+        </div>
+        <div class="flex gap-6">
+          <a href="https://github.com" target="_blank" rel="noopener" class="">GitHub</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="">LinkedIn</a>
+          <a href="#" class="">Twitter</a>
+          <a href="mailto:you@example.com" class="">Email</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 text-center text-sm">
+        &copy; 2026 MySaaS. Built with HTML &amp; Tailwind CSS.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
