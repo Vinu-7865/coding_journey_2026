@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 13 — Animations & Transitions (Tailwind)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /*
+    Tailwind does not have built-in keyframe animations
+    beyond animate-spin, animate-ping, animate-pulse, animate-bounce.
+    For custom keyframes we still need a small <style> block.
+    Everything ELSE uses Tailwind classes.
+  */
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to   { background-position: 200% 0; }
+  }
+
+  @keyframes bounceIn {
+    0%   { transform: scale(0); }
+    60%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  /* Custom animation utility classes */
+  .animate-fadeInUp    { animation: fadeInUp 0.5s ease forwards; opacity: 0; }
+  .animate-slideInLeft { animation: slideInLeft 0.5s ease forwards; opacity: 0; }
+  .animate-shimmer     { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+  .animate-bounceIn    { animation: bounceIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+  /* Stagger delays */
+  .delay-0   { animation-delay: 0ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-450 { animation-delay: 450ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-750 { animation-delay: 750ms; }
+
+  /* Nav underline slide — needs pseudo-element, can't do with Tailwind alone */
+  .nav-link { position: relative; padding-bottom: 4px; }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: #3b82f6;
+    border-radius: 2px;
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Toggle knob slide */
+  .toggle-knob { transition: transform 0.2s ease; }
+  .toggle-on .toggle-knob { transform: translateX(20px); }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-900 px-6 py-10">
+<div class="max-w-3xl mx-auto">
+
+  <!-- PAGE HEADER — already done -->
+  <h1 class="text-3xl font-black mb-2">✨ Day 13 — Animations & Transitions</h1>
+  <p class="text-gray-500 text-sm mb-10">Fill in every empty <code class="bg-gray-100 px-1 rounded text-blue-600">class=""</code> attribute. Use Tailwind utility classes only.</p>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 1 — BUTTON TRANSITIONS
+       
+       Classes you need to know:
+       transition-all duration-200 ease-in-out
+       hover:bg-blue-600  hover:-translate-y-0.5
+       hover:shadow-lg    hover:shadow-blue-500/30
+       active:scale-95
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 1 — Button Transitions
+    </div>
+
+    <div class="flex gap-3 flex-wrap items-center">
+
+      <!-- Blue button — lift + shadow on hover -->
+      <button class="px-5 py-2.5 rounded-lg font-semibold text-sm text-white bg-blue-500
+        transition-all duration-200 hover:bg-green-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/30 active:scale-95">
+        Hover — lift + shadow
+      </button>
+      <!--
+        Add these classes:
+        transition-all duration-200
+        hover:bg-blue-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30
+        active:scale-95
+      -->
+
+      <!-- Grey button — scale on hover -->
+      <button class="px-5 py-2.5 rounded-lg font-semibold text-sm text-gray-700 bg-gray-100 border border-gray-200
+        transition-all duration-200 hover:bg-gray-200 hover:scale-105 active:scale-95">
+        Hover — scale
+      </button>
+      <!--
+        Add these classes:
+        transition-all duration-200
+        hover:bg-gray-200 hover:scale-105
+        active:scale-95
+      -->
+
+      <!-- Green button — glow on hover -->
+      <button class="px-5 py-2.5 rounded-lg font-semibold text-sm text-white bg-emerald-500
+        transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/40 active:scale-95">
+        Hover — glow
+      </button>
+      <!--
+        Add these classes:
+        transition-all duration-200
+        hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/40
+        active:scale-95
+      -->
+
+    </div>
+
+    <div class="mt-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg p-3 text-xs text-blue-800 leading-relaxed">
+      <strong>Tailwind tip:</strong> <code>hover:shadow-blue-500/30</code> means the shadow colour is blue-500 at 30% opacity. The <code>/30</code> is an opacity modifier — works on any colour class.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 2 — CARD LIFT
+       
+       Classes you need:
+       transition-all duration-200
+       hover:-translate-y-1.5 hover:shadow-xl
+       cursor-pointer
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 2 — Card Lift on Hover
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer">
+        <div class="text-2xl mb-2">⚡</div>
+        <div class="text-sm font-bold text-gray-900 mb-1">Fast uploads</div>
+        <div class="text-xs text-gray-500">hover to lift</div>
+      </div>
+      <!-- Add: transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+         transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer">
+        <div class="text-2xl mb-2">🔒</div>
+        <div class="text-sm font-bold text-gray-900 mb-1">Secure</div>
+        <div class="text-xs text-gray-500">hover to lift</div>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer">
+        <div class="text-2xl mb-2">🌍</div>
+        <div class="text-sm font-bold text-gray-900 mb-1">Global CDN</div>
+        <div class="text-xs text-gray-500">hover to lift</div>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer">
+        <div class="text-2xl mb-2">👥</div>
+        <div class="text-sm font-bold text-gray-900 mb-1">Team sharing</div>
+        <div class="text-xs text-gray-500">hover to lift</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 3 — NAV LINK UNDERLINE SLIDE
+       
+       Classes you need:
+       transition-colors duration-150
+       hover:text-blue-500
+       (::after is handled by the .nav-link CSS above)
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 3 — Nav Link Underline Slide
+    </div>
+
+    <nav class="flex gap-7">
+      <a href="#" class="nav-link text-sm text-gray-500
+        transtion-colors duration-150 hover:text-blue-500">Features</a>
+      <!-- Add: transition-colors duration-150 hover:text-blue-500 -->
+
+      <a href="#" class="nav-link text-sm text-gray-500
+      transtion-colors duration-150 hover:text-blue-500">Pricing</a>
+
+      <a href="#" class="nav-link text-sm text-gray-500
+      transtion-colors duration-150 hover:text-blue-500">Docs</a>
+
+      <a href="#" class="nav-link text-sm text-gray-500
+        transition-colors duration-150 hover:text-blue-500">Blog</a>
+    </nav>
+
+    <div class="mt-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg p-3 text-xs text-blue-800 leading-relaxed">
+      <strong>Note:</strong> The sliding underline uses <code>::after</code> width transition — this cannot be done with Tailwind utility classes alone. The <code>.nav-link</code> CSS is already written in the style block above. Your Tailwind classes add the colour transition.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 4 — KEYFRAME ANIMATION GALLERY
+       
+       Custom animation classes (defined in style block):
+       animate-fadeInUp
+       animate-slideInLeft
+       animate-shimmer
+       animate-bounceIn
+
+       Built-in Tailwind animations:
+       animate-spin      → spinner
+       animate-pulse     → pulse
+       animate-bounce    → bounce
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 4 — Keyframe Animation Gallery
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+      <!-- fadeInUp -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center
+        animate-fadeInUp">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-500 block mb-3">fadeInUp</span>
+        <p class="text-xs text-gray-500">Fades + slides up on page load</p>
+      </div>
+      <!-- Add class: animate-fadeInUp -->
+
+      <!-- slideInLeft -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center
+        animate-slideInLeft">
+        <span class="text-xs font-bold uppercase tracking-widest text-violet-500 block mb-3">slideInLeft</span>
+        <p class="text-xs text-gray-500">Slides in from left</p>
+      </div>
+      <!-- Add class: animate-slideInLeft -->
+
+      <!-- Spinner — built-in Tailwind animate-spin -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-500 block mb-3">animate-spin</span>
+        <div class="w-6 h-6 border-2 border-gray-200 border-t-blue-500 rounded-full mx-auto
+          animate-spin"></div>
+        <!-- Add class: animate-spin -->
+      </div>
+
+      <!-- Pulse — built-in Tailwind animate-pulse -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-500 block mb-3">animate-pulse</span>
+        <div class="w-4 h-4 bg-blue-500 rounded-full mx-auto
+          animate-pulse"></div>
+        <!-- Add class: animate-pulse -->
+      </div>
+
+      <!-- Shimmer — custom -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-3">shimmer</span>
+        <div class="h-3 rounded-full
+          animate-shimmer"></div>
+        <!-- Add class: animate-shimmer -->
+      </div>
+
+      <!-- BounceIn — custom -->
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center">
+        <span class="text-xs font-bold uppercase tracking-widest text-red-400 block mb-3">bounceIn</span>
+        <span class="inline-block bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full
+          animate-bounceIn hover:animate-bounceIn">NEW</span>
+        <!-- Add class: animate-bounceIn -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 5 — STAGGERED CARDS
+       
+       Classes you need:
+       animate-fadeInUp   (custom — defined above)
+       delay-0 delay-150 delay-300 delay-450 delay-600 delay-750
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 5 — Staggered Entry on Page Load
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-0">
+        <div class="text-xl mb-2">📁</div>
+        <div class="text-xs text-gray-500">Card 1 — 0ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-0 -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-150">
+        <div class="text-xl mb-2">🔗</div>
+        <div class="text-xs text-gray-500">Card 2 — 150ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-150 -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-300">
+        <div class="text-xl mb-2">⚡</div>
+        <div class="text-xs text-gray-500">Card 3 — 300ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-300 -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-450">
+        <div class="text-xl mb-2">🔒</div>
+        <div class="text-xs text-gray-500">Card 4 — 450ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-450 -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-600">
+        <div class="text-xl mb-2">🌍</div>
+        <div class="text-xs text-gray-500">Card 5 — 600ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-600 -->
+
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center
+        animate-fadeInUp delay-750">
+        <div class="text-xl mb-2">👥</div>
+        <div class="text-xs text-gray-500">Card 6 — 750ms</div>
+      </div>
+      <!-- Add: animate-fadeInUp delay-750 -->
+
+    </div>
+
+    <div class="mt-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg p-3 text-xs text-blue-800 leading-relaxed">
+      <strong>Reload the page</strong> after adding the animation classes to see the stagger effect. Each card should appear 150ms after the previous one.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PART 6 — MICROINTERACTIONS
+       
+       Toggle classes:
+       wrapper  → w-11 h-6 bg-gray-200 rounded-full relative cursor-pointer transition-colors duration-200
+       on state → bg-blue-500  (toggle via JS)
+       knob     → toggle-knob w-4.5 h-4.5 bg-white rounded-full absolute top-0.5 left-0.5 shadow
+
+       Input classes:
+       w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm
+       outline-none transition-all duration-150
+       focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+
+       Skeleton classes:
+       animate-shimmer (custom) h-3 rounded-full
+       ══════════════════════════════════════════ -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-7 mb-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-5 pb-3 border-b border-gray-100">
+      Part 6 — Microinteractions
+    </div>
+
+    <div class="flex flex-col gap-7">
+
+      <!-- Toggle switch -->
+      <div>
+        <div class="text-sm font-semibold text-gray-700 mb-3">Toggle Switch</div>
+        <div class="flex items-center gap-3">
+          <div id="toggle"
+            class="
+            w-11  h-6 bg-gray-200 rounded-full relative cursor-pointer transition-colors duration-200"
+            onclick="this.classList.toggle('toggle-on'); this.classList.toggle('bg-blue-500'); this.classList.toggle('bg-gray-200');">
+            <div class="toggle-knob
+              w-[18px] h-[18px] bg-white rounded-full relative cursor-pointer transition-colors duration-200"></div>
+          </div>
+          <!--
+            Toggle wrapper add:
+            w-11 h-6 bg-gray-200 rounded-full relative cursor-pointer transition-colors duration-200
+
+            Knob add:
+            w-[18px] h-[18px] bg-white rounded-full absolute top-[3px] left-[3px] shadow
+          -->
+          <span class="text-sm text-gray-500">Click to toggle</span>
+        </div>
+      </div>
+
+      <!-- Input focus ring -->
+      <div>
+        <div class="text-sm font-semibold text-gray-700 mb-3">Input Focus Ring</div>
+        <input
+          type="text"
+          placeholder="Click to see focus ring animation..."
+          class="
+          w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm font-[inherit]
+          outline-none transitiona-all duration-150
+          focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+        <!--
+          Add:
+          w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm font-[inherit]
+          outline-none transition-all duration-150
+          focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+        -->
+      </div>
+
+      <!-- Skeleton loading -->
+      <div>
+        <div class="text-sm font-semibold text-gray-700 mb-3">Skeleton Loading</div>
+        <div class="flex flex-col gap-2 max-w-[200px]">
+          <div class="h-3 rounded-full
+            animate-shimmer"></div>
+          <!-- Add: animate-shimmer -->
+
+          <div class="h-3 rounded-full w-4/5
+            animate-shimmer"></div>
+          <!-- Add: animate-shimmer -->
+
+          <div class="h-3 rounded-full w-3/5
+          animate-shimmer"></div>
+          <!-- Add: animate-shimmer -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- CHEAT SHEET — already done for reference -->
+  <div class="bg-gray-900 text-gray-300 rounded-2xl p-7">
+    <div class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-5">Tailwind Animation Cheat Sheet</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs font-mono">
+      <div>
+        <div class="text-pink-400 font-bold mb-2">Built-in animations</div>
+        <div class="leading-7 text-gray-400">
+          animate-spin &nbsp;&nbsp;&nbsp;→ rotate 360deg infinite<br>
+          animate-pulse &nbsp;&nbsp;→ opacity pulse infinite<br>
+          animate-bounce &nbsp;→ bounce up/down infinite<br>
+          animate-ping &nbsp;&nbsp;&nbsp;→ scale + fade infinite
+        </div>
+      </div>
+      <div>
+        <div class="text-cyan-400 font-bold mb-2">Transition classes</div>
+        <div class="leading-7 text-gray-400">
+          transition-all &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duration-200<br>
+          hover:-translate-y-1 &nbsp;hover:shadow-lg<br>
+          hover:scale-105 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active:scale-95<br>
+          focus:ring-2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;focus:ring-blue-500/20
+        </div>
+      </div>
+      <div>
+        <div class="text-green-400 font-bold mb-2">Transform classes</div>
+        <div class="leading-7 text-gray-400">
+          translate-y-0 &nbsp;&nbsp;&nbsp;-translate-y-1<br>
+          translate-x-0 &nbsp;&nbsp;&nbsp;-translate-x-full<br>
+          scale-100 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale-95 scale-105<br>
+          rotate-0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate-180
+        </div>
+      </div>
+      <div>
+        <div class="text-yellow-400 font-bold mb-2">Shadow + opacity</div>
+        <div class="leading-7 text-gray-400">
+          shadow-sm &nbsp;shadow-md &nbsp;shadow-lg<br>
+          shadow-blue-500/30 &nbsp;← colour + opacity<br>
+          opacity-0 &nbsp;opacity-50 &nbsp;opacity-100<br>
+          hover:opacity-80
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
