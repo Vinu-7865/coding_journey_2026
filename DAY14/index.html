@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+
+  <!--
+    DAY 14 CONCEPT: viewport meta tag
+    Without this, mobile browsers zoom out to show the full desktop site.
+    This tells the browser: match the device width, don't zoom.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="REF — Remember Everything Forever. Spaced repetition for developers.">
+  <title>REF — Remember Everything Forever</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+
+  <!-- ============================================================
+    SECTION 1: NAV
+    What to write in CSS:
+      .nav               → sticky top-0, flex space-between, align-items center
+      .nav-logo          → font-size, font-weight
+      .nav-links         → flex, gap (Day 9 Pattern 2 — space-between nav)
+      .nav-links a       → font-size, color, hover color transition
+      .nav-cta           → background, color, padding, border-radius, hover transition
+
+    DAY 14 CONCEPT used here:
+      → No clamp() needed — nav height is fixed
+      → But padding uses clamp() so it breathes on all screen sizes:
+        padding: 0 clamp(1rem, 5vw, 2rem)
+  ============================================================ -->
+  <header class="nav-wrapper">
+    <nav class="sticky top-0 flex justify-evenly items-center text-small font-medium">
+      <a href="#" class="nav-logo text-lg font-bold">REF</a>
+      <div class="nav-links flex gap-10">
+        <a href="#how" class="font-medium text-blue-600 hover:text-red-600 ">How it works</a>
+        <a href="#features" class="font-medium text-blue-600 hover:text-red-600 ">Features</a>
+        <a href="#themes" class="font-medium text-blue-600 hover:text-red-600 ">Themes</a>
+      </div>
+      <a href="#waitlist" class="nav-cta">Join waitlist</a>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+    SECTION 2: HERO
+    What to write in CSS:
+      .hero              → text-align center, padding (USE clamp() HERE)
+      .hero-eyebrow      → small uppercase label above the heading
+      .hero-title        → USE clamp() for font-size — scales from mobile to desktop
+                           target: clamp(2rem, 6vw, 4.5rem)
+      .hero-subtitle     → USE clamp() for font-size
+                           target: clamp(1rem, 2.5vw, 1.3rem)
+      .hero-actions      → flex, justify-content center, gap, flex-wrap wrap
+      .btn-primary       → background, color, padding, border-radius, transition
+      .btn-secondary     → border, color, same padding, border-radius, transition
+      .hero-note         → small muted text below buttons
+
+    DAY 14 CONCEPT used here:
+      → clamp() on font-size = fluid headline — no media query needed
+      → clamp() on padding = section breathes on every screen size
+  ============================================================ -->
+  <section class="hero">
+    <p class="hero-eyebrow">Spaced repetition for developers</p>
+    <h1 class="hero-title">Remember Everything<br>Forever</h1>
+    <p class="hero-subtitle">
+      You learn something new every day. REF makes sure<br>
+      you never forget it — automatically.
+    </p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">Join the waitlist</a>
+      <a href="#how" class="btn-secondary">See how it works</a>
+    </div>
+    <p class="hero-note">Free to start · No credit card required</p>
+  </section>
+
+
+  <!-- ============================================================
+    SECTION 3: STATS ROW
+    What to write in CSS:
+      .stats             → container width using min() — DAY 14 CONCEPT
+                           display grid, grid-template-columns repeat(3, 1fr), gap
+      .stat              → text-align center, padding
+      .stat-number       → large font-size, font-weight
+      .stat-label        → small muted text
+
+    DAY 14 CONCEPT used here:
+      → min(100% - 3rem, 900px) — perfect centered container, one line
+      → This replaces: max-width: 900px; width: 100%; margin: 0 auto;
+  ============================================================ -->
+  <div class="stats-wrapper">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">170</div>
+        <div class="stat-label">days of learning tracked</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5×</div>
+        <div class="stat-label">better retention than re-reading</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2 min</div>
+        <div class="stat-label">average daily review time</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+    SECTION 4: HOW IT WORKS
+    What to write in CSS:
+      .how               → section padding using clamp()
+      .section-label     → small uppercase heading label
+      .section-title     → h2, USE clamp() for font-size
+      .steps             → display grid, grid-template-columns repeat(3, 1fr), gap
+                           On mobile: 1 column. On tablet+: 3 columns.
+                           USE auto-fill + minmax — DAY 14 CONCEPT
+      .step-number       → styled circle/badge for the step number
+      .step-title        → font-weight, margin
+      .step-body         → muted text, font-size, line-height
+
+    DAY 14 CONCEPT used here:
+      → repeat(auto-fill, minmax(min(100%, 260px), 1fr))
+        = 3 columns on desktop, 1 column on mobile — ZERO media queries
+  ============================================================ -->
+  <section class="how" id="how">
+    <div class="section-header">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Learn it once. Review it forever.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Add what you learned</h3>
+        <p class="step-body">After each study session, paste your notes, key concepts, or code snippets into REF. Takes under a minute.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 class="step-title">REF schedules reviews</h3>
+        <p class="step-body">The spaced repetition algorithm automatically decides when to remind you — 1 day, 3 days, 7 days, then monthly.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Rate your recall</h3>
+        <p class="step-body">Each review takes 2 minutes. Rate how well you remembered. REF adjusts the next review date based on your answer.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    SECTION 5: FEATURES GRID
+    What to write in CSS:
+      .features          → section padding using clamp()
+      .features-grid     → THE KEY GRID — use auto-fill + minmax
+                           grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr))
+                           This is responsive with ZERO media queries — DAY 14 CONCEPT
+      .feature-card      → border, border-radius, padding
+                           ADD: transition, hover transform (Day 13 — card lift)
+      .feature-icon      → icon wrapper, size, border-radius, background
+      .feature-title     → font-weight, margin
+      .feature-body      → muted text, font-size, line-height
+
+    DAY 9 CONCEPT revisited:
+      → flex: 1 is NOT needed here — Grid handles equal sizing
+      → The auto-fill minmax does what flex-wrap + flex: 1 did, but cleaner
+
+    DAY 13 CONCEPT used here:
+      → hover: translateY(-4px) on .feature-card (card lift animation)
+      → transition: transform 0.2s ease, box-shadow 0.2s ease
+  ============================================================ -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Everything you need. Nothing you don't.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Automatic scheduling</h3>
+        <p class="feature-body">The algorithm decides when you need to review. You just show up.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3 class="feature-title">Code snippet support</h3>
+        <p class="feature-body">Paste code blocks directly into your review cards with syntax highlighting.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3 class="feature-title">Daily reminders</h3>
+        <p class="feature-body">Get notified when reviews are due. Never miss a day.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3 class="feature-title">Progress dashboard</h3>
+        <p class="feature-body">See your streak, topics mastered, and daily review count at a glance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 class="feature-title">Theme customisation</h3>
+        <p class="feature-body">Pick your vibe — minimal, cyberpunk, retro, vintage, nature, or ocean.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">Private by default</h3>
+        <p class="feature-body">Your notes are yours. End-to-end encrypted, never shared.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    SECTION 6: THEME SWITCHER
+    What to write in CSS:
+      .themes            → section padding, text-align center
+      .theme-switcher    → flex, justify-content center, gap, flex-wrap wrap
+      .theme-btn         → padding, border-radius, border, cursor, transition
+                           each button gets a data-theme attr used by JS
+      .theme-btn.active  → highlighted state — border-color change
+
+    DAY 10 CONCEPT used here (THE BIG ONE):
+      → CSS variables on :root — define all colour tokens
+      → Each [data-theme="x"] on <html> overrides those variables
+      → JS below switches the theme by changing data-theme on <html>
+      → The entire page changes colour instantly — one JS line
+
+    You must define these in your CSS for each theme:
+      :root, [data-theme="default"]  { --bg, --surface, --text, --muted, --accent, --border }
+      [data-theme="cyberpunk"]       { same vars, different values }
+      [data-theme="retro"]           { same vars, different values }
+      [data-theme="minimal"]         { same vars, different values }
+      [data-theme="nature"]          { same vars, different values }
+      [data-theme="ocean"]           { same vars, different values }
+  ============================================================ -->
+  <section class="themes" id="themes">
+    <div class="section-header">
+      <p class="section-label">Themes</p>
+      <h2 class="section-title">Your app. Your aesthetic.</h2>
+      <p class="themes-subtitle">Click a theme — watch the whole page transform.</p>
+    </div>
+    <div class="theme-switcher">
+      <button class="theme-btn active" data-theme="default">Default</button>
+      <button class="theme-btn" data-theme="cyberpunk">Cyberpunk</button>
+      <button class="theme-btn" data-theme="retro">Retro</button>
+      <button class="theme-btn" data-theme="minimal">Minimal</button>
+      <button class="theme-btn" data-theme="nature">Nature</button>
+      <button class="theme-btn" data-theme="ocean">Ocean</button>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    SECTION 7: WAITLIST FORM
+    What to write in CSS:
+      .waitlist          → section padding, text-align center
+      .waitlist-card     → centered card, max-width, border, border-radius, padding
+                           USE: width: min(100% - 3rem, 560px)  ← DAY 14 CONCEPT
+      .waitlist-form     → flex, gap (row on tablet, column on mobile)
+                           USE aspect-ratio? No — but USE clamp() on padding
+      .waitlist-input    → flex: 1, padding, border, border-radius
+                           ADD: focus ring transition (Day 13 microinteraction)
+      .waitlist-submit   → background, color, padding, border-radius, transition
+                           ADD: hover transform scale (Day 13)
+
+    DAY 14 CONCEPT used here:
+      → width: min(100% - 3rem, 560px) — card never overflows on mobile
+      → No media query needed for the card width
+  ============================================================ -->
+  <section class="waitlist" id="waitlist">
+    <div class="waitlist-card">
+      <h2 class="waitlist-title">Be the first to know</h2>
+      <p class="waitlist-body">REF is in development. Leave your email and we'll let you know when it's ready.</p>
+      <form class="waitlist-form" onsubmit="handleSubmit(event)">
+        <input
+          type="email"
+          class="waitlist-input"
+          placeholder="your@email.com"
+          required
+          aria-label="Email address"
+        >
+        <button type="submit" class="waitlist-submit">Notify me</button>
+      </form>
+      <p class="waitlist-note" id="form-message"></p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+    SECTION 8: FOOTER
+    What to write in CSS:
+      .footer            → background (use var(--surface)), padding using clamp()
+      .footer-inner      → USE min() for container width — DAY 14 CONCEPT
+                           display flex, justify-content space-between, align-items center
+                           flex-wrap wrap, gap
+      .footer-brand      → font-weight, font-size
+      .footer-links      → flex, gap
+      .footer-links a    → font-size, color, hover transition
+      .footer-copy       → small muted text, margin-top, text-align center
+
+    DAY 9 CONCEPT revisited:
+      → Pattern 2 (space-between) for footer-inner
+      → Pattern 6 (flex row with gap) for footer-links
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">REF</span>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+      </nav>
+    </div>
+    <p class="footer-copy">Built in public · Day 14 of 170 · &copy; 2026 REF</p>
+  </footer>
+
+
+  <!-- ============================================================
+    JAVASCRIPT — already written for you
+
+    Two things this script does:
+    1. Theme switcher — changes data-theme on <html> when a button is clicked
+       This is the Day 10 CSS variables concept in action.
+       Your CSS variables respond to [data-theme="x"] — JS just sets the attribute.
+
+    2. Form submit — shows a confirmation message without reloading the page
+  ============================================================ -->
+  <script>
+    // THEME SWITCHER
+    // This is the entire mechanism — one line of JS changes every colour on the page
+    // because your CSS is built with variables that respond to data-theme
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        // Add active to clicked button
+        btn.classList.add('active');
+        // THE KEY LINE — this triggers your CSS variable overrides
+        document.documentElement.dataset.theme = btn.dataset.theme;
+      });
+    });
+
+    // FORM SUBMIT
+    function handleSubmit(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('.waitlist-input');
+      const msg = document.getElementById('form-message');
+      msg.textContent = 'You\'re on the list! We\'ll be in touch.';
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
