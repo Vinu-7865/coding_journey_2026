@@ -1,0 +1,93 @@
+# Day 16 — How Browsers Render HTML & CSS
+
+## The Rendering Pipeline (9 steps — write from memory)
+
+```
+Bytes → Tokens → Nodes → DOM → CSSOM → Render Tree → Layout → Paint → Composite
+```
+
+### What each step does
+
+| Step | What happens |
+|------|-------------|
+| **Bytes** | Raw bytes received from server, decoded using charset (UTF-8) |
+| **Tokens** | Bytes become tokens: StartTag, EndTag, Text, Comment |
+| **Nodes** | Each token becomes a Node object with properties |
+| **DOM** | Nodes assembled into a parent-child tree matching HTML structure |
+| **CSSOM** | CSS parsed separately into its own tree of style rules |
+| **Render Tree** | DOM + CSSOM combined — `display:none` elements excluded |
+| **Layout** | Exact position and size calculated for every visible element |
+| **Paint** | Pixels drawn — text, colours, images, borders |
+| **Composite** | GPU layers assembled into final screen output |
+
+---
+
+## Reflow vs Repaint vs Composite
+
+### What triggers what
+
+| What you change | Stage triggered | Cost |
+|----------------|----------------|------|
+| `width`, `height`, `margin`, `padding`, `top`, `left`, `font-size`, `display` | Layout (reflow) + Repaint + Composite | 🔴 Expensive |
+| `color`, `background`, `visibility`, `box-shadow`, `border-color` | Repaint + Composite | 🟡 Medium |
+| `transform`, `opacity` | Composite only | 🟢 Fast — GPU accelerated |
+
+### The golden rule for animations
+```css
+/* ALWAYS use these for animations */
+transition: transform 0.2s ease;
+transition: opacity 0.2s ease;
+
+/* NEVER animate these */
+/* width, height, top, left, margin, padding */
+/* — they trigger reflow every single frame */
+```
+
+---
+
+## defer vs async
+
+```html
+<!-- Blocks parsing while downloading AND executing — avoid -->
+<script src="app.js"></script>
+
+<!-- Downloads in parallel, executes after HTML parsed, in order — use this -->
+<script src="app.js" defer></script>
+
+<!-- Downloads in parallel, executes as soon as ready — for analytics only -->
+<script src="analytics.js" async></script>
+```
+
+### Rules that never change
+- CSS always goes in `<head>` — blocks rendering intentionally to prevent FOUC
+- Scripts always get `defer` unless they're analytics (`async`) or truly critical
+- `defer` maintains execution order — multiple deferred scripts run in sequence
+- `async` does NOT maintain order — first downloaded = first executed
+
+### Why CSS blocks rendering (intentionally)
+Without CSS blocking, the browser would paint raw unstyled HTML first, then repaint with styles — a flash of unstyled content (FOUC). CSS blocking ensures the first paint is already styled.
+
+---
+
+## DevTools — What I learned to use
+
+### Elements tab
+- Click any element → see its HTML, attributes, styles
+- Computed panel → see resolved values (clamp resolves to px, var() resolves to hex)
+- Box model diagram → actual margin/border/padding/content in pixels
+
+### Paint Flashing
+DevTools → three dots → More Tools → Rendering → Paint Flashing
+- Green flash = repaint happening
+- Animations using `transform` should NOT flash
+- Animations using `width`, `top`, `left` WILL flash
+
+### Performance tab
+- Record a page load
+- Find "Layout" bars = reflow events
+- Find "Paint" bars = repaint events
+
+---
+
+
+
