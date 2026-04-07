@@ -65,20 +65,18 @@
    
    // Version 2: switch
    function getDaysSwitch(rating) {
-     // YOUR CODE HERE
-     case1:
-     return 1;
-    case2:
-    return 3;
-    case3:
-    return 7;
-    case4:
-    return 14;
-    break;
-    default:
-        throw new Error("Invalid rating: " + rating)
-
-
+     switch (rating) {
+       case 1:
+         return 1;
+       case 2:
+         return 3;
+       case 3:
+         return 7;
+       case 4:
+         return 14;
+       default:
+         throw new Error("Invalid rating: " + rating);
+     }
    }
    
    // Test both — should produce same results
@@ -111,7 +109,7 @@
      if (i % 2 === 0) continue
      console.log(i)
    }
-   // Prediction:
+   // Prediction: it will iterate through number 1 to 5, but skip 2 and 4, so it will print 1, 3, 5 because of using the condition and continue statement.
    
    // Loop B — predict the output
    const ratings = [4, 1, 3, 2, 4, 3]
@@ -121,7 +119,7 @@
      sum += r
    }
    console.log("Sum:", sum)
-   // Prediction:
+   // Prediction: 4 because the program will break when it encounters the rating 1, so it will only add 4 to the sum before breaking out of the loop. The rest of the ratings will not be added to the sum.
    
    // Loop C — predict the output
    const topic = { title: "Flexbox", day: 9, rating: 3, reviewed: true }
@@ -130,7 +128,8 @@
      keys.push(key)
    }
    console.log("Keys:", keys)
-   // Prediction:
+   // Prediction: it will print the keys of the topic object, which are "title", "day", "rating", and "reviewed".
+   //  So the output will be: Keys: ["title", "day", "rating", "reviewed"]
    
    // Loop D — predict the output
    let count = 3
@@ -139,7 +138,7 @@
      count--
    }
    console.log("Done")
-   // Prediction:
+   // Prediction: the loop will be infinite because the condition count > 0 will always be true.
    
    
    /* ══════════════════════════════════════════════
