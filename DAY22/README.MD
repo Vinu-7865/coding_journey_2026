@@ -1,4 +1,4 @@
-# 📅 Day 23 – Arrays
+# 📅 Day 22 – Arrays
 
 **Phase:** 3 – JavaScript Fundamentals
 
