@@ -210,20 +210,25 @@
    
    // 1. Get topics due today (nextReview is not null AND <= today)
    const dueToday = // YOUR CODE
+    refTopics.filter(t => t.nextReview !== null && t.nextReview <= today)
    console.log("due today:", dueToday.map(t => t.title))
    // ["Flexbox", "Variables", "Arrays"]
    
    // 2. Get titles of overdue topics with rating 1 (forgotten)
    const forgotten = // YOUR CODE
+   refTopics.filter(t => t.nextReview !== null && t.nextReview < today && t.rating === 1)
+   .map(t => t.title)
    console.log("forgotten:", forgotten)
    // ["Variables"]
    
    // 3. Total review count across all topics
    const totalReviews = // YOUR CODE
+   refTopics.reduce((sum, t)=> sum + t.reviewCount, 0)
    console.log("total reviews:", totalReviews)   // 7
    
    // 4. Is any topic never reviewed? (reviewCount === 0)
    const hasUnreviewed = // YOUR CODE
+   refTopics.filter(t => t.reviewCount === 0).length > 0
    console.log("has unreviewed:", hasUnreviewed)   // true
    
    // 5. Get topics sorted by rating — highest first
@@ -251,9 +256,10 @@
       ══════════════════════════════════════════════ */
    
    // ANSWERS:
-   // 1.
-   // 2.
-   // 3.
-   // 4.
-   // 5.
-   // 6.
+   // 1. map method is used to create a new array by transforming every element in the array, while forEach  is used to execute a provided function once for each array element without creating a new array.
+   // 2. filter returns an empty array if nothing matches the condition.
+   // 3. the initial value of reduce method is used to set the starting point for the accumulation.
+   // if you omit the initial value, reduce will use the first element of the array as the initial value 
+   // 4. the find method return the first element that matches the condition and ignores the rest, while filter will pass all the elements that match the condition and return them in a new array.
+   // 5. the spread operator is used while creating a new array with the existing elements and adding a new item, while arr.push(item) is used to add an item to the end of an existing array.
+   // 6. using filter + map is better than a for loop because it allows you to write more concise and readable code, 
