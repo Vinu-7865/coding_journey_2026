@@ -137,14 +137,22 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    
    const createTopic = (title, subject = "General", day = 1) => {
      // YOUR CODE HERE
-     return `title: ${title},subject: ${subject},day: ${day}`
+     return {
+        title,
+        subject,
+        day,
+        rating:null,
+        reviewed:false,
+        reviewCount:0,
+        nextReview:null
+     }
    }
    
-   const t1 = createTopic("Flexbox", "CSS", 9)
+   const t1 = createTopic("Objects", "JavaScript", 9)
    const t2 = createTopic("Closures")
    console.log(t1)
    console.log(t2.subject)    // "General"
-   console.log(t2.reviewed)   // undefined — not there at all, not false or null, because we are not returning an object with those properties in the createTopic function, we are returning a string instead.
+   console.log(t2.reviewed)   // false
    
    
    // Function 2: updateTopic(topic, changes)
@@ -152,7 +160,7 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    // changes is an object with fields to override
    
    const updateTopic = (topic, changes) => {
-     // YOUR CODE HERE
+    Object.freeze(topic) // freeze the original object to prevent mutation
      // Use spread — one line
      return { ...topic, ...changes }
    }
@@ -168,16 +176,20 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    
    // Function 3: getTopicSummary(topic)
    // Receives a topic object
-   // Returns a string: "Flexbox (CSS) — Day 9 — Rating: 4"
+   // Returns a string: 'Objects (JavaScript) — Day 9 — Rating: Not rated'
    // If rating is null — show "Not rated" instead of null
    
    const getTopicSummary = (topic) => {
      // YOUR CODE HERE
-     // Use destructuring in the parameters or body
+     if(topic.rating === null){
+        return `${topic.title} (${topic.subject}) — Day ${topic.day} — Rating: Not rated`
+     }else{
+        return `${topic.title} is a ${topic.subject} topic rated ${topic.rating}/5`;
+     }
    }
    
    console.log(getTopicSummary(t1))
-   // "Flexbox (CSS) — Day 9 — Rating: 4"
+   // "Objects (JavaScript) — Day 9 — Rating: Not rated"
    
    console.log(getTopicSummary(t2))
    // "Closures (General) — Day 1 — Rating: Not rated"
@@ -190,6 +202,7 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    
    const buildUpdate = (key, value) => {
      // YOUR CODE HERE
+     return {[key]: value}
      // Use computed property names
    }
    
@@ -231,14 +244,18 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    
    // 2. Get average rating of reviewed topics
    // Hint: filter reviewed, use reduce to sum ratings, divide by count
-   const avgRating = // YOUR CODE
+   const avgRating = topics2
+   .filter(t => t.reviewed)
+    .reduce((sum, t) => sum + t.rating, 0) / reviewedTitles.length
    console.log("Avg rating:", avgRating.toFixed(1))   // "2.7"
    
    // 3. Build a lookup object: title → topic
    // Result: { Flexbox: {...}, Grid: {...}, ... }
    // Use reduce — accumulator starts as {}
    const topicLookup = topics2.reduce((acc, topic) => {
-     // YOUR CODE
+        // YOUR CODE
+        acc[topic.title] = topic
+        return acc
    }, {})
    console.log("Lookup Flexbox:", topicLookup["Flexbox"].rating)   // 4
    console.log("Lookup Grid:", topicLookup["Grid"].reviewed)       // true
@@ -247,6 +264,10 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
    // Result: { CSS: 2, JS: 3 }
    const subjectCount = topics2.reduce((acc, topic) => {
      // YOUR CODE
+        if(acc[topic.subject]){
+            acc[topic.subject]++
+        }
+        
    }, {})
    console.log("Subject count:", subjectCount)   // { CSS: 2, JS: 3 }
    
@@ -269,54 +290,14 @@ const formatUser = ({name,age})=>{return `name: ${name}, age: ${age}`}
       ══════════════════════════════════════════════ */
    
    // ANSWERS:
-   // 1.
-   // 2.
-   // 3.
-   // 4.
-   // 5.
+   // 1. bracket notation is used when the naming of the property is not a valid identifier (e.g. contains spaces or starts with a number) or when we want to access a property using a variable that holds the property name.
+   // 2. { ...obj, key: newValue } creates a new object by copying all properties from obj and then overriding the value of the key property with newValue. It does not mutate the original object, it creates a new one.
+   // 3. Destructuring in function params allows us to extract specific properties from an object passed as an argument. 
+   // For example : 
+   // 4. object.entries return key-value pairs of an object as an array of arrays. We can loop over it using a for...of loop or using array methods like forEach or map.
+   // 5. In REF, updateTopic should return a new object instead of mutating the input to maintain immutability. This allows us to keep track of changes over time and avoid unintended side effects that can occur when mutating objects directly. It also makes it easier to implement features like undo/redo and time travel debugging.
 
 
 
 
 
-// const user = {
-//     name: "Alice",
-//     age: 30,
-//     email: "alice@example.com",
-//     address:{
-//         street: "123 Main St",
-//         city: "Anytown",
-//         country: "USA"
-//     }
-//   };
-
-// const details = ['name','age'];
-
-// // user['address'] = '123 Main St'; // adding a property to the object
-// // user.address = 'jackson hills'; // updating the value of the property
-// console.log(user)
-
-// // delete user.address // deleting a property from the object
-// console.log(user)
-
-// console.log("name" in user) // checking if a property exist in the object
-
-// const title = "flexbox";
-// const rating = 4;
-// const reviewed = true;
-
-// const check = {title,rating,reviewed} // creating an object using shorthand property names
-// console.log(check)
-
-// const topic = {title:title, rating:rating} // creating an object using property value shorthand
-// console.log(topic)
-
-// // const {name,age} = user; // destructuring an object to extract values
-// const{name:myName} = user; // destructuring an object with renaming
-// const { address : { street } } = user; // nested destructuring to extract values from nested objects
-
-// const Rating = ({name,age,reviewed = null})=>{
-//     return ` Title: ${name}, Age:${age}, Reviewed:${reviewed} `;
-// }
-
-// Rating(user) // passing object as an argument to a function
