@@ -101,6 +101,7 @@
    
    const cleanInput = (str) => {
      // YOUR CODE — one line using chaining
+     str.trim()
    }
    
    console.log(cleanInput("  Flexbox  "))   // "flexbox"
@@ -114,6 +115,7 @@
    
    const capitalize = (str) => {
      // YOUR CODE
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
      // Hint: use charAt(0) or slice to get first char
      // then slice(1) for the rest
    }
@@ -129,7 +131,8 @@
    
    const formatDay = (day) => {
      // YOUR CODE
-     // Hint: String(day).padStart(2, "0")
+     String(day).padStart(2, "0")
+     
    }
    
    console.log(formatDay(9))    // "09"
@@ -145,6 +148,7 @@
    const slugify = (title) => {
      // YOUR CODE
      // Steps: trim → lowercase → replaceAll spaces with dashes
+     title.trim().toLowerCase().replaceAll(" ", "-")
    }
    
    console.log(slugify("CSS Flexbox"))      // "css-flexbox"
@@ -160,9 +164,18 @@
    // Returns false otherwise
    
    const isValidTitle = (title) => {
+    if(typeof title !== "string"){
+        return false
+    }
+    const trimmed = title.trim()
      // YOUR CODE
-     // Think about each condition separately
-   }
+     if(trimmed!== "" && title.length>=3 && /[a-zA-Z]/.test(trimmed)){
+        return true
+     }else{
+        return false
+     }
+ }
+    // Think about each condition separately
    
    console.log(isValidTitle("Flexbox"))     // true
    console.log(isValidTitle("  "))          // false — empty
@@ -179,22 +192,22 @@
    
    console.log("\n── EXERCISE 4: conversions ──")
    
-   console.log(String(42))          // prediction:
-   console.log(String(3.14))        // prediction:
-   console.log((3.14159).toFixed(2))// prediction:
-   console.log((3).toFixed(2))      // prediction:
+   console.log(String(42))          // prediction: "42"
+   console.log(String(3.14))        // prediction: "3.14"
+   console.log((3.14159).toFixed(2))// prediction: "3.14" , it will only keep 2 digits after the decimal points
+   console.log((3).toFixed(2))      // prediction: "3.00" , it will add 2 zeros after decimal points to make it 2 digits after decimal points
    
-   console.log(Number("42"))        // prediction:
-   console.log(Number("3.14"))      // prediction:
-   console.log(Number(""))          // prediction:
-   console.log(Number("abc"))       // prediction:
-   console.log(parseInt("42px"))    // prediction:
-   console.log(+"99")               // prediction:
+   console.log(Number("42"))        // prediction: 42
+   console.log(Number("3.14"))      // prediction:3.14
+   console.log(Number(""))          // prediction: 0, because an empty string is converted to 0 when using Number()
+   console.log(Number("abc"))       // prediction: NaN, because the string "abc" cannot be converted to a valid number, so it return NaN.
+   console.log(parseInt("42px"))    // prediction: 42, because parseInt will convert the string into number and the text after the number will be ignored , unless if the string starts with non-numeric characters then it will return NaN.
+   console.log(+"99")               // prediction: 99, if you put + sign before a string with a number then it will convert it to a number.
    
    // Which are valid numbers?
-   console.log(Number.isNaN(Number("abc")))  // prediction:
-   console.log(Number.isNaN(Number("42")))   // prediction:
-   console.log(Number.isNaN(Number("")))     // prediction: ← careful
+   console.log(Number.isNaN(Number("abc")))  // prediction: true , because Number("abc") returns NaN and Number.isNaN(NaN) returns true
+   console.log(Number.isNaN(Number("42")))   // prediction: false, because Number converts "42" to 42 , so if it check Number.isNaN(42) , then it will return false
+   console.log(Number.isNaN(Number("")))     // prediction: ← careful , this will return false because the empty string will be converted to number 0, and Number.NaN(0) will return false n
    
    
    /* ══════════════════════════════════════════════
@@ -215,9 +228,16 @@
    // 1. Clean all topic titles — trim and proper case
    // "css flexbox" → "Css Flexbox"
    // Use capitalize from Exercise 3 + split + join
+
+
    const cleanTitles = topics.map(t => {
-     // YOUR CODE
-     // Hint: t.title.trim().split(" ").map(capitalize).join(" ")
+      // YOUR CODE
+   t.title
+   .trim()
+   .split(" ")
+   .map(word => capitalize(word))
+   .join(" ")
+     
    })
    console.log("Clean titles:", cleanTitles)
    // ["Css Flexbox", "Css Grid", "Variables", "Closures"]
