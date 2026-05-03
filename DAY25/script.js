@@ -100,9 +100,9 @@
    // "  Flexbox  " → "flexbox"
    
    const cleanInput = (str) => {
-     // YOUR CODE — one line using chaining
-     str.trim()
-   }
+      return str.trim().toLowerCase();
+  }
+  
    
    console.log(cleanInput("  Flexbox  "))   // "flexbox"
    console.log(cleanInput("  CSS GRID "))   // "css grid"
@@ -245,6 +245,8 @@
    // 2. Search topics by query (case insensitive)
    const searchTopics = (topicList, query) => {
      // YOUR CODE
+     const cleanedQuery = cleanInput(query);
+     return topicList.filter(topic=> cleanInput(topic.title).includes(cleanedQuery))
      // Use cleanInput from Exercise 3
      // Filter where title includes the cleaned query
    }
@@ -262,6 +264,9 @@
        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
        .join(" ")
      // Build the rest of the string
+
+     const ratingText = rating ? `Rating: ${rating}` : "Not rated";
+     return `${cleanTitle} (${subject}) - Day ${String(day).padStart(2, "0")} - ${ratingText}`
    })
    summaries.forEach(s => console.log(s))
    
@@ -280,9 +285,9 @@
       ══════════════════════════════════════════════ */
    
    // ANSWERS:
-   // 1.
-   // 2.
-   // 3.
-   // 4.
-   // 5.
-   // 6.
+   // 1. String methods do not modify the original string because strings are immutable in JavaScript.
+   // 2. it will slice the last 3 character from the string and return it as a new string.
+   // 3. replace method will only replace the first occurrence of the specified value in the string, but replaceAll method will replace all the occurrences of the specified value in the string.
+   // 4. the split method with an empty string as the separator will split the string into an array of individual characters.
+   // 5. the Number method returns NaN when any value other than number is passed to it, including an empty string. Number("") will return 0, because an empty string is converted to 0 when using Number().
+   // 6. In REF, I should always trim and lowercase user input before comparing to ensure that the comparison is case-insensitive and does not include any whitespace. This helps to avoid issues where user input may not match the expected format due to differences in capitalization or accidental spaces.
