@@ -23,20 +23,20 @@
    PART 1 — DATA TYPES & VARIABLES (Day 18)
    
    Before writing any code, answer these:
-   1. What is the difference between null and undefined?
-   2. When does ?? trigger vs ||?
-   3. Why does typeof null === "object"?
+   1. What is the difference between null and undefined? the null is used to intentionally set as empty value, while undefined is intentionally set to undefined value
+   2. When does ?? trigger vs ||? ; The ?? operator triggers when the left-hand side is null or undefined, while the || operator triggers when the left-hand side is falsy (which includes null, undefined, 0, "",false,NaN)
+   3. Why does typeof null === "object"? , it was a famous bug in JavaScript that has been around since the beginning. 
    ══════════════════════════════════════════════ */
 
    console.log("════ PART 1: Data Types ════")
 
    // Predict each — write prediction as comment first
-   console.log(typeof "REF")            // prediction:
-   console.log(typeof 170)              // prediction:
-   console.log(typeof null)             // prediction: ← the famous bug
-   console.log(typeof undefined)        // prediction:
-   console.log(typeof {})               // prediction:
-   console.log(typeof [])               // prediction:
+   console.log(typeof "REF")            // prediction: the typeof is string
+   console.log(typeof 170)              // prediction: the typeof is number
+   console.log(typeof null)             // prediction: ← the famous bug , the typeof is object, but actually null is a primitive value that represents the intentional empty value.
+   console.log(typeof undefined)        // prediction: the typeof undefined is undefined
+   console.log(typeof {})               // prediction: the typeof of {} is object
+   console.log(typeof [])               // prediction: the type of [] is object, because arrays are a special type of object in JavaScript
    
    // ?? vs ||
    const score1 = 0 ?? "default"
