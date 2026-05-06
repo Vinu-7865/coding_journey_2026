@@ -43,10 +43,10 @@
    const score2 = 0 || "default"
    const score3 = null ?? "default"
    const score4 = null || "default"
-   console.log(score1)  // prediction:
-   console.log(score2)  // prediction:
-   console.log(score3)  // prediction:
-   console.log(score4)  // prediction:
+   console.log(score1)  // prediction: 0 is not null or undefined, so it will return 0
+   console.log(score2)  // prediction: it will return "default" because 0 is falsy
+   console.log(score3)  // prediction: the output will be "default" because null is null, so it will return the right-hand side value "default"
+   console.log(score4)  // prediction: the output will be "default" because null is falsy
    
    // Optional chaining
    const topic = { title: "Flexbox", review: { rating: 4 } }
