@@ -52,9 +52,9 @@
    const topic = { title: "Flexbox", review: { rating: 4 } }
    const noTopic = null
    
-   console.log(topic?.review?.rating)     // prediction:
-   console.log(noTopic?.review?.rating)   // prediction:
-   console.log(topic?.notes?.text ?? "No notes")  // prediction:
+   console.log(topic?.review?.rating)     // prediction: the output will be 4 , because it present in the deep nested object of topic and the ? is used to safely access the nested property without throwing an error if any part of the chain is null or undefined.
+   console.log(noTopic?.review?.rating)   // prediction: the output will be undefined , because it will not throw any error, due to the optional chaining operator, but it will return undefined since noTopic is null and does not have a review property.
+   console.log(topic?.notes?.text ?? "No notes")  // prediction: the output will be "NO notes" because topic does not have a notes property, so using the optional chaining property it will safely access the notes property and return undefined because that property is not exist in the topic object, then the nullish coalescing operator will return the right-hand side value "No notes" since the left-hand side is null or undefined.
    
    
    /* ══════════════════════════════════════════════
@@ -78,7 +78,6 @@
    const getRatingLabel = (rating) => {
      // YOUR CODE HERE
    }
-   
    console.log(getRatingLabel(4))   // "Easy"
    console.log(getRatingLabel(1))   // "Forgot"
    // getRatingLabel(5)             // should throw — uncomment to test
