@@ -77,7 +77,19 @@
    
    const getRatingLabel = (rating) => {
      // YOUR CODE HERE
-   }
+     if(rating === 4){
+      return "Easy"
+     }else if(rating === 3){
+      return "Good"
+   }else if(rating === 2){
+      return "Hard"
+  }else if(rating === 1){
+      return "Forgot"
+  } else{
+    throw new Error("Invalid rating")
+  }
+
+}
    console.log(getRatingLabel(4))   // "Easy"
    console.log(getRatingLabel(1))   // "Forgot"
    // getRatingLabel(5)             // should throw — uncomment to test
