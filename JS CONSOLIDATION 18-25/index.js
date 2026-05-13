@@ -99,8 +99,16 @@
    values.forEach(v => {
      console.log(`${JSON.stringify(v)} → ${v ? "truthy" : "falsy"}`)
    })
-   // Write ALL predictions before running:
-   
+   // Write ALL predictions before running: the output will be:
+   // "0" → falsy
+   // "" → falsy
+    // null → falsy  
+    // undefined → falsy
+    // NaN → falsy
+    // "0" → truthy
+    // [] → truthy
+    // {} → truthy
+    // -1 → truthy
    
    /* ══════════════════════════════════════════════
       PART 3 — LOOPS (Day 20)
