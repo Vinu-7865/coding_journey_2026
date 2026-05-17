@@ -129,6 +129,8 @@
    // Plain English: "Count how many days in a row the user
    //   reviewed, starting from the most recent day
    //   and going backwards until they missed one."
+
+   const reviewDays = [1, 3, 7, 14, 30];
    
    const calculateStreak = (reviewDays) => {
      // YOUR CODE HERE — use a loop, no array methods
