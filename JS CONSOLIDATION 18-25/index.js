@@ -132,6 +132,14 @@
    
    const calculateStreak = (reviewDays) => {
      // YOUR CODE HERE — use a loop, no array methods
+      let streak = 0;
+      for(let i = reviewDays.length - 1; i >= 0; i--){
+        if(reviewDays[i]){
+          streak++;
+        }else{
+          break;
+        }
+      }
    }
    
    console.log(calculateStreak([true, false, true, true, true]))  // 3
