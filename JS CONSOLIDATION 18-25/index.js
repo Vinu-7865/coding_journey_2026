@@ -156,14 +156,16 @@
      if (r === 1) break
      sum += r
    }
-   console.log("Sum:", sum)   // prediction:
+   console.log("Sum:", sum)   // prediction: 4 , because the loop will start iterating over the ratings array and it will add the first rating 4 to the sum , then it will check the second rating which is 1 and since it is equal to 1 the loop will break 
+   // and it will not add the rest of the ratings to the sum, so the final output will be 4.
    
    let count = 0
    for (const r of ratings) {
      if (r < 3) continue
      count++
    }
-   console.log("Count >= 3:", count)  // prediction:
+   console.log("Count >= 3:", count)  // prediction: 3, because the loop will iterate over the ratings array and it will check each rating if it is less than 3, if it is less than 3 it will skip that iteration and continue to the next one, 
+   // so it will count the ratings that are greater than or equal to 3 which are 4, 3, and 4 , so the final output will be 3.
    
    
    /* ══════════════════════════════════════════════
