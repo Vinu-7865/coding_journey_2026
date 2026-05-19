@@ -165,7 +165,7 @@
      count++
    }
    console.log("Count >= 3:", count)  // prediction: 3, because the loop will iterate over the ratings array and it will check each rating if it is less than 3, if it is less than 3 it will skip that iteration and continue to the next one, 
-   // so it will count the ratings that are greater than or equal to 3 which are 4, 3, and 4 , so the final output will be 3.
+   // so it will count the ratings that are greater than or equal to 3 which are 4, 3, and 4 , so the final output will be 
    
    
    /* ══════════════════════════════════════════════
@@ -187,8 +187,19 @@
    
    const getDaysUntilReview = (rating) => {
      // YOUR CODE HERE
-   }
-   
+      if(rating === 4){
+        return 14;
+      }else if(rating === 3){
+        return 7;
+      }else if(rating === 2){
+         return 3;
+      }else if(rating === 1){
+        return 1;
+      }else{
+         throw new Error("Invalid rating")
+      }
+    
+    }
    // TASK: write getNextReviewDate(rating)
    // Uses getDaysUntilReview
    // Returns a Date object
