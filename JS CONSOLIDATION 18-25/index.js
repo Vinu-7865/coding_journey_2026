@@ -208,6 +208,11 @@
    
    const getNextReviewDate = (rating) => {
      // YOUR CODE HERE
+    const daysUntilReview = getDaysUntilReview(rating);
+    const nextDateReview = new Date();
+    nextDateReview.setDate(nextDateReview.getDate() + daysUntilReview);
+    return nextDateReview;
+
    }
    
    // TASK: write formatDate(date)
