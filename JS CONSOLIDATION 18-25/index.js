@@ -231,7 +231,7 @@
    
    // Default parameter prediction
    const create = (title, subject = "General") => ({ title, subject })
-   console.log(create("Flexbox"))         // prediction:
+   console.log(create("Flexbox"))         // prediction:    { title: "Flexbox", subject: "General" }
    console.log(create("Flexbox", null))   // prediction: ← null vs undefined
    
    
@@ -255,6 +255,22 @@
    
    const makeTopicTracker = (topicTitle) => {
      // YOUR CODE HERE
+     let reviewCount = 0;
+     let lastRating = null;
+     return {
+      review: (rating) => {
+        if(rating < 1 || rating > 4){
+          throw new Error("Invalid rating")
+        }
+        reviewCount++;
+        lastRating = rating;
+      }, 
+      getStats: () => ({
+        title: topicTitle,
+        reviewCount,
+        lastRating
+      })
+     }
      // Closed over: reviewCount, lastRating
      // review(rating) — validates rating, increments count, saves rating
      // getStats() — returns { title, reviewCount, lastRating }
