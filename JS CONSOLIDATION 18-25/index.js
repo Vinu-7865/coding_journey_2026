@@ -292,11 +292,14 @@
    // Classic closure bug — predict both
    const fnsVar = []
    for (var i = 0; i < 3; i++) fnsVar.push(() => i)
-   console.log(fnsVar[0](), fnsVar[1](), fnsVar[2]())  // prediction:
+   console.log(fnsVar[0](), fnsVar[1](), fnsVar[2]())  // prediction: the output will be 3 3 3 , because the variable i is declared with var which has function scope,
+  // so all the functions in the fnsVar array will share the same i variable, and by the time they are called, the loop has completed and i has been incremented to 3
    
    const fnsLet = []
    for (let j = 0; j < 3; j++) fnsLet.push(() => j)
-   console.log(fnsLet[0](), fnsLet[1](), fnsLet[2]())  // prediction:
+   console.log(fnsLet[0](), fnsLet[1](), fnsLet[2]())  // prediction: the output will be 0 1 2 , because the variable j is declared with let instead of var,
+  // so each function in the fnsLet array will have its own separate j variable that is scoped to the block of the loop iteration,
+  //  and when they are called, they will return the value of j for their respective iteration (0 for the first function, 1 for the second, and 2 for the third).
    
    
    /* ══════════════════════════════════════════════
