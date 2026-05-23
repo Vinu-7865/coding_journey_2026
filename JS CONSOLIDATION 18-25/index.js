@@ -308,7 +308,9 @@
       Before writing: what is the difference between
       map and forEach? What does filter return when
       nothing matches?
-      //
+     .... the filter will return an empty array when nothing matches, while the map will return an array of the same length as the original array, but with the values transformed according to the provided function.
+     the forEach method is used to execute a provided function once for each array element, but it does not return a new array. It simply iterates over the array and performs the specified action for each elements in the array
+     , without creating a new array or returning any value.
       ══════════════════════════════════════════════ */
    
    console.log("\n════ PART 6: Arrays ════")
