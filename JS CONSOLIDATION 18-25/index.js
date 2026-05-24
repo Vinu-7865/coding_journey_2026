@@ -329,10 +329,12 @@
    
    // 1. Titles of all topics
    const allTitles = // YOUR CODE
+      topics.map(t => t.title);
    console.log("All titles:", allTitles)
    
    // 2. Topics due today (nextReview not null AND <= today)
-   const dueToday = // YOUR CODE
+   const dueToday = // YOUR CODE  
+            
    console.log("Due today:", dueToday.map(t => t.title))
    // ["Flexbox", "Grid", "Arrays"]
    
