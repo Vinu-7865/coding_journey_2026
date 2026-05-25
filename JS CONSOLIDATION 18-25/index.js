@@ -333,9 +333,8 @@
    console.log("All titles:", allTitles)
    
    // 2. Topics due today (nextReview not null AND <= today)
-   const dueToday = // YOUR CODE  
-            
-   console.log("Due today:", dueToday.map(t => t.title))
+   const dueToday =   topics.filter(t => t.nextReview !== null && t.nextReview <= today).map(t => t.title);
+   console.log("Due today:",dueToday )
    // ["Flexbox", "Grid", "Arrays"]
    
    // 3. Has any topic been forgotten (rating === 1)?
