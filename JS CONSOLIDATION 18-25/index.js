@@ -338,15 +338,15 @@
    // ["Flexbox", "Grid", "Arrays"]
    
    // 3. Has any topic been forgotten (rating === 1)?
-   const hasForgotten = // YOUR CODE
+   const hasForgotten = topics.some(t => t.rating === 1);
    console.log("Has forgotten:", hasForgotten)  // true
    
    // 4. Are all rated topics rated >= 2?
-   const allDecent = // YOUR CODE (filter nulls first)
+   const allDecent = topics.filter(t => t.rating !== null).every(t => t.rating >= 2);
    console.log("All decent:", allDecent)  // false — Grid is 1
    
    // 5. Total review count across all topics
-   const totalReviews = // YOUR CODE
+   const totalReviews = topics.reduce((sum, t) => sum + t.reviewCount, 0);
    console.log("Total reviews:", totalReviews)  // 7
    
    // 6. Count topics per subject using reduce
@@ -357,7 +357,7 @@
    console.log("By subject:", bySubject)
    
    // 7. Find the topic with highest reviewCount
-   const mostReviewed = topics.reduce((best, t) =>
+   const mostReviewed = topics.reduce((best, t) =>{}
      // YOUR CODE
    )
    console.log("Most reviewed:", mostReviewed.title)  // "Flexbox"
