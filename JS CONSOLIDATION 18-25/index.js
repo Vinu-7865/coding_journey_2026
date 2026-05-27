@@ -352,13 +352,17 @@
    // 6. Count topics per subject using reduce
    // Result: { CSS: 2, JS: 3 }
    const bySubject = topics.reduce((acc, t) => {
-     // YOUR CODE
+     // YOUR CODE  
+     acc[t.subject] = (acc[t.subject] || 0) + 1;
+     return acc;
+
    }, {})
    console.log("By subject:", bySubject)
    
    // 7. Find the topic with highest reviewCount
    const mostReviewed = topics.reduce((best, t) =>{}
-     // YOUR CODE
+            
+  
    )
    console.log("Most reviewed:", mostReviewed.title)  // "Flexbox"
    
