@@ -360,10 +360,10 @@
    console.log("By subject:", bySubject)
    
    // 7. Find the topic with highest reviewCount
-   const mostReviewed = topics.reduce((best, t) =>{}
-            
-  
-   )
+   const mostReviewed = topics.reduce((best, t) =>
+      t.reviewCount > best.reviewCount ? t : best
+   , {}
+  )
    console.log("Most reviewed:", mostReviewed.title)  // "Flexbox"
    
    
