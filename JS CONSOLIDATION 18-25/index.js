@@ -384,7 +384,13 @@
    //         reviewed:false, reviewCount:0, nextReview:null
    
    const createTopic = (title, subject = "General", day = 1) => ({
-     // YOUR CODE — use shorthand where possible
+      title,
+      subject,
+      day,
+      rating:null,
+      reviewed:false,
+      reviewCount:0,
+      nextReview:null
    })
    
    // TASK: write updateTopic(topic, changes)
