@@ -400,7 +400,9 @@
    //   The original must never be touched."
    
    const updateTopic = (topic, changes) => ({
-     // YOUR CODE — one line
+      ...topic,
+      ...changes
+
    })
    
    const t1 = createTopic("Flexbox", "CSS", 9)
@@ -415,7 +417,11 @@
    for (const [key, val] of Object.entries(summary)) {
      console.log(`${key}: ${getRatingLabel(val)}`)
    }
-   // prediction:
+   // prediction: the output will be: 
+   // flexbox : Easy
+  // grid : Forgot
+  // closures : Good
+
    
    // Spread order — predict each
    const base   = { a: 1, b: 2 }
