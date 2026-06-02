@@ -426,7 +426,9 @@
    // Spread order — predict each
    const base   = { a: 1, b: 2 }
    const merged = { ...base, b: 99, c: 3 }
-   console.log(merged)  // prediction:
+   console.log(merged)  // prediction: { a: 1, b: 99, c: 3 } , because when using the spread operator to merge objects, the properties are merge in the order they are defined,
+   // so the properties from the base object wil be added first (a: 1, b: 2), then the property b: 99 will overwrite the previous value of b from the base object,
+   //  and finally the property c: 3 will be added to the merged object, resulting in { a: 1, b: 99, c: 3 }.
    
    
    /* ══════════════════════════════════════════════
