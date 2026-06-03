@@ -443,12 +443,12 @@
    
    // TASK: write cleanInput(str)
    // Trim + lowercase
-   const cleanInput = (str) => // YOUR CODE — one line
+   const cleanInput = (str) => str.trim().toLowerCase();
    
    // TASK: write capitalize(str)
    // First letter uppercase, rest lowercase
    // "FLEXBOX" → "Flexbox"
-   const capitalize = (str) => // YOUR CODE
+   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
    
    // TASK: write slugify(title)
    // "CSS Flexbox" → "css-flexbox"
